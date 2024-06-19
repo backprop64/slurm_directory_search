@@ -88,9 +88,8 @@ Fill in the config file with your information. Some of the defaults are what I u
     - `--directories`: (Optional) Specifies the file containing the directories to parallelize the search over (by default, it will use the one made in step 3).
 
 5. **Combine all the individual search outputs after all jobs finish running:**
+
   ```sh
     cat file_batches/*.txt > all_found_files.txt
     ```
----
-
 
