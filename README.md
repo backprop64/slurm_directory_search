@@ -1,4 +1,4 @@
-# Parallelize directory search over slurm
+# Parallelize directory search using Slurm
 
 Parallelize the heck out of finding every file that contains specified keyword(s) in a large storage volume with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda
 
@@ -89,7 +89,7 @@ Fill in the config file with your information. Some of the defaults are what I u
 
 5. **Combine all the individual search outputs after all jobs finish running:**
 
-  ```sh
+    ```sh
     cat file_batches/*.txt > all_found_files.txt
     ```
 
