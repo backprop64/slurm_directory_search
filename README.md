@@ -1,18 +1,18 @@
 # Parallelize directory search over slurm
 
 Parallelize the heck out of finding every file that contains specified keyword(s) in a large storage volume with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda
+
 ---
 
 ## How to Use This Codebase
 
-Create a conda environment for this project, get the codebase, and install the requirements:
+Create a Conda environment for this project, clone the codebase, and install the requirements:
 
 ```sh
-$ conda create -n slurm_search python=3.9 
+$ conda create -n slurm_search python=3.9
 $ git clone https://github.com/backprop64/slurm_directory_search
 $ pip install -r requirements.txt
 ```
-
 
 ### Setup Config
 
@@ -40,22 +40,21 @@ Fill in the config file with your information. Some of the defaults are what I u
 - `cpus_per_task`: Number of CPUs per task.
 - `time`: Maximum time for each job.
 - `mem`: Memory allocation per job.
-- `conda_env`: Name of the conda environment to activate.
-- `conda_lib_path`: Path to conda's `lib` directory.
+- `conda_env`: Name of the Conda environment to activate.
+- `conda_lib_path`: Path to Conda's `lib` directory.
 - `keywords`: List of keywords to search for in files.
-
 
 ### Running The Scripts
 
-0. Fill in the SLURM configuration file as described above.
-1. Navigate to the project directory and activate the enviornment:
+1. Fill in the SLURM configuration file as described above.
+2. Navigate to the project directory and activate the environment:
 
     ```sh
     cd path/to/slurm_directory_search
     conda activate slurm_search
     ```
 
-2. (Optional) Use `split_up_directories.py` to create a list of directories that step 3 will parallelize over.
+3. (Optional) Use `split_up_directories.py` to create a list of directories that step 3 will parallelize over.
 
     The `split_up_directories.py` script can be used to create a list of directories (one job will be launched per directory). The script searches the directory tree to a specified depth, collecting all directories into an output file, and saves files with the relevant keywords along the way. You can also use it to count the number of directories that would be saved.
 
@@ -63,12 +62,12 @@ Fill in the config file with your information. Some of the defaults are what I u
     python slurm_search.py <command> [--root_dir <root_directory>] [--depth <search_depth>] [--dir_output <directory_output_file>] [--file_output <file_output_file>] [--keywords <filter_keywords>]
     ```
 
-    ### Commands
+    #### Commands
 
-    - `save`: Saves directories to parallelize over ( and file paths based on specified keywords) .
+    - `save`: Saves directories to parallelize over (and file paths based on specified keywords).
     - `count`: Counts directories and files in the specified root directory.
 
-    ### Arguments
+    #### Arguments
 
     - `--root_dir`: Root directory to start the search. Required for both commands.
     - `--depth`: (Optional) Maximum depth of directories to search.
@@ -76,14 +75,14 @@ Fill in the config file with your information. Some of the defaults are what I u
     - `--file_output`: (Optional) Output file for files.
     - `--keywords`: (Required for `save` command) Keywords to filter files.
 
-3. Launch the SLURM jobs.
+4. Launch the SLURM jobs.
 
    Use the `slurm_search.py` script to submit jobs, launching one job per directory in `directories.txt` (by default, it will use the one generated in step 2):
 
     ```sh
     python slurm_search.py --config /path/to/config.json [--depth <search_depth>]
     ```
-    ### Arguments
+    #### Arguments
 
     - `--config`: Path to the SLURM configuration JSON file.
     - `--depth`: (Optional) Specifies the maximum depth of directories to search. If provided, it overrides the depth set in the configuration file.
