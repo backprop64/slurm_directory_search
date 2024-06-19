@@ -1,4 +1,4 @@
-## Parallelize searching a large directory for files containing specific keywords using slurm
+## Parallelize the task of finding files containing specific keywords using Slurm 
 
 Parallelize the heck out of finding every file that contains specified keyword(s) in a large nested directory with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda. It basically splits up the directory tree into sub trees, and searches each sub tree with a seperate slurm job; tested on big data (large nested file directory with lots of files)
 
