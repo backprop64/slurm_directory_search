@@ -1,6 +1,6 @@
 # Parallelize directory search using Slurm
 
-Parallelize the heck out of finding every file that contains specified keyword(s) in a large storage volume with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda
+Parallelize the heck out of finding every file that contains specified keyword(s) in a large nested directory with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda
 
 ---
 
@@ -56,7 +56,7 @@ Fill in the config file with your information. Some of the defaults are what I u
 
 3. **(Optional) Use `split_up_directories.py` to create a list of directories that step 3 will parallelize over**
 
-    The `split_up_directories.py` script can be used to create a list of directories.txt file containing individual subdirectories to search in prallel. The script searches the directory tree to a specified depth, collecting all directories into an directories.txt file, and saves encountered files with the relevant keywords along the way. You can also use it to count the number of directories that would be saved aswell.
+    The `split_up_directories.py` script can be used to create a directories.txt file containing individual subdirectories to search in prallel. The script searches the directory tree to a specified depth, collecting all directories into a directories text file, and saves encountered files to a seperate text file with the relevant keywords along the way. You can also use it to count the number of directories that would be saved aswell (telling you how many jobs will be queued in parallel).
 
     ```sh
     python split_up_directories.py <command> [--root_dir <root_directory>] [--depth <search_depth>] [--dir_output <directory_output_file>] [--file_output <file_output_file>] [--keywords <filter_keywords>]
@@ -77,7 +77,7 @@ Fill in the config file with your information. Some of the defaults are what I u
 
 4. **Launch the SLURM jobs**
 
-   Use the `slurm_search.py` script to submit jobs, launching one job per directory in the specified directories `.txt` (by default, it will use the one generated in step 3):
+   Use the `slurm_search.py` script to launch job submission, creating one job per folder/line in the provided directories `.txt` (by default, it will use the one generated in step 3):
 
     ```sh
     python slurm_search.py --config config.json --directories path/to/file/of/directories.txt

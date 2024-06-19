@@ -1,0 +1,12 @@
+{
+    "account": "your_account",
+    "partition": "your_partition",
+    "ntasks_per_node": 1,
+    "cpus_per_task": 2,
+    "time": "15:00",
+    "mem": "10G",
+    "conda_env": "slurm_search",
+    "conda_lib_path": "/path/to/your/miniconda3",
+    "project_directory": "/path/to/slurm_directory_search",
+    "keywords": [".mp4", ".avi", ".mov"]
+}
