@@ -46,15 +46,15 @@ Fill in the config file with your information. Some of the defaults are what I u
 
 ### Running The Scripts
 
-1. Fill in the SLURM configuration file as described above.
-2. Navigate to the project directory and activate the environment:
+1. **Make sure you filled in the configuration file as described above**
+2. **Navigate to the project directory and activate the environment**
 
     ```sh
     cd path/to/slurm_directory_search
     conda activate slurm_search
     ```
 
-3. (Optional) Use `split_up_directories.py` to create a list of directories that step 3 will parallelize over.
+3. **(Optional) Use `split_up_directories.py` to create a list of directories that step 3 will parallelize over**
 
     The `split_up_directories.py` script can be used to create a list of directories (one job will be launched per directory). The script searches the directory tree to a specified depth, collecting all directories into an output file, and saves files with the relevant keywords along the way. You can also use it to count the number of directories that would be saved.
 
@@ -75,7 +75,7 @@ Fill in the config file with your information. Some of the defaults are what I u
     - `--file_output`: (Optional) Output file for files.
     - `--keywords`: (Required for `save` command) Keywords to filter files.
 
-4. Launch the SLURM jobs.
+4. **Launch the SLURM jobs**
 
    Use the `slurm_search.py` script to submit jobs, launching one job per directory in `directories.txt` (by default, it will use the one generated in step 2):
 
@@ -89,3 +89,5 @@ Fill in the config file with your information. Some of the defaults are what I u
     - `--directories`: (Optional) Specifies the file containing the directories to parallelize the search over (by default, it will use the one made in step 3).
 
 ---
+
+
