@@ -1,10 +1,10 @@
-# Parallelize directory search using Slurm
+## Parallelize searching a large directory for files containing specific keywords using slurm
 
-Parallelize the heck out of finding every file that contains specified keyword(s) in a large nested directory with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda
+Parallelize the heck out of finding every file that contains specified keyword(s) in a large nested directory with slurm. this codebase assumes you have a file directory on a system with slurm, and miniconda/anaconda. It basically splits up the directory tree into sub trees, and searches each sub tree with a seperate slurm job; tested on big data (large nested file directory with lots of files)
 
 ---
 
-## How to Use This Codebase
+### How to Use This Codebase
 
 Create a Conda environment for this project, clone the codebase, and install the requirements:
 
@@ -14,7 +14,7 @@ $ git clone https://github.com/backprop64/slurm_directory_search
 $ pip install tqdm
 ```
 
-### Setup Config
+#### Setup Config
 
 Fill in the config file with your information. Some of the defaults are what I used on my system for finding video files.
 
@@ -44,7 +44,7 @@ Fill in the config file with your information. Some of the defaults are what I u
 - `conda_lib_path`: Path to Conda's `lib` directory.
 - `keywords`: List of keywords to search for in files.
 
-### Running The Scripts
+#### Running The Scripts
 
 1. **Make sure you filled in the configuration file as described above**
 2. **Navigate to the project directory and activate the environment**
@@ -62,12 +62,12 @@ Fill in the config file with your information. Some of the defaults are what I u
     python split_up_directories.py <command> [--root_dir <root_directory>] [--depth <search_depth>] [--dir_output <directory_output_file>] [--file_output <file_output_file>] [--keywords <filter_keywords>]
     ```
 
-    #### Commands
+    ##### Commands
 
     - `save`: Saves directories to parallelize over (and file paths based on specified keywords).
     - `count`: Counts directories and files in the specified root directory.
 
-    #### Arguments
+    ##### Arguments
 
     - `--root_dir`: Root directory to start the search. Required for both commands.
     - `--depth`: Maximum depth of directories to search.
@@ -82,7 +82,7 @@ Fill in the config file with your information. Some of the defaults are what I u
     ```sh
     python slurm_search.py --config config.json --directories path/to/file/of/directories.txt
     ```
-    #### Arguments
+    ##### Arguments
 
     - `--config`: Path to the SLURM configuration JSON file.
     - `--directories`: (Optional) Specifies the file containing the directories to parallelize the search over (by default, it will use the one made in step 3).
